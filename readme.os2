@@ -1,0 +1,150 @@
+README for Count 2.3 for OS/2
+-----------------------------
+
+Count provides a combination web page hit counter, clock, and date cgi program
+for your web server.  Use your favorite web browser to read DOCS/COUNT.HTML or
+visit http://www.fccc.edu/users/muquit/Count.html for a complete list of
+features.
+
+
+Quick and dirty install :
+
+Simply use Info-ZIP's unzip.exe 5.12 or any other equivalent unzip utility that
+preserves directories to extract the contents of the archive directly into your
+cgi-bin directory.  Install the EMX 0.9c runtime .DLLs.  Edit
+WCOUNT\CONF\COUNT.CFG.  Get around to deleting the DOCS directory, README.OS2,
+and SRC_OS2.ZIP when you feel like it.
+
+
+Normal install :
+
+1. Install the EMX 0.9c runtime support package (EMXRT.ZIP) on your system.
+   Simply copy the .DLLs contained in EMXRT.ZIP to a directory in your LIBPATH.
+2. Copy the executable file COUNT.EXE to your cgi-bin directory.
+3. Copy the directory WCOUNT and its subdirectories to your cgi-bin directory.
+   You should not change the name or location of this directory.
+4. Edit the small commented text file WCOUNT\CONF\COUNT.CFG as appropriate for
+   your site.  You will probably need to use your favorite web browser to read
+   the documentation in DOCS\COUNT.HTML in order to understand what some of the
+   configuration options mean when editing the WCOUNT\CONF\COUNT.CFG file.
+5. Add the counter to your web pages and begin using them.  Refer to
+   DOCS\COUNT.HTML and DOCS\COUNT2EX.HTML for complete descriptions of the
+   various options and numerous examples.  You should use count.exe in your
+   HTML files rather than count.cgi.
+6. Visit http://www.fccc.edu/users/muquit/Count.html for the latest version of
+   the documentation and other news.
+7. Visit Digit Mania at http://www.digitmania.holowww.com/ to download hundreds
+   of different typestyles for you to use with your new counter.
+
+For example:
+   You should have directories similar to
+      D:\TCPIP\WWW\CGI-BIN\wcount\conf
+      D:\TCPIP\WWW\CGI-BIN\wcount\data
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits
+      D:\TCPIP\WWW\CGI-BIN\wcount\log
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\A
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\B
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\C
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\D
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\E
+   and files similar to
+      D:\TCPIP\WWW\CGI-BIN\count.exe
+      D:\TCPIP\WWW\CGI-BIN\wcount\rgb.txt
+      D:\TCPIP\WWW\CGI-BIN\wcount\conf\count.cfg
+      D:\TCPIP\WWW\CGI-BIN\wcount\data\sample.dat
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\A\strip.gif
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\B\strip.gif
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\C\strip.gif
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\D\lenna.gif
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\D\strip.gif
+      D:\TCPIP\WWW\CGI-BIN\wcount\digits\E\strip.gif
+
+
+Upgrading from 2.2 :
+
+If you have the 2.2 or earlier version for OS/2 installed you should delete the
+old version before installing this version using the instructions above.  You
+can keep your old data files.  You can also keep your fonts however you must
+either use MKSTRIP.EXE to turn the individual digit files into a single strip,
+or you must modify your HTML code to include the ISTRIP=F option.  Refer to
+DOCS/COUNT.HTML for information about using MKSTRIP.EXE and/or ISTRIP=.
+
+
+Using the package:
+
+Refer to DOCS\COUNT.HTML and DOCS\COUNT2EX.HTML for complete descriptions of
+the various options and numerous examples.  Visit
+http://www.fccc.edu/users/muquit/Count.html for the latest version of the
+documentation and other news.
+
+You can delete the WCOUNT\DIGITS\D\LENNA.GIF file if you wish, it is simply
+used by one of the examples in order to show how the image= tag is used.  The
+WCOUNT\DATA\SAMPLE.DAT file can also be deleted.  Overtime you will have many
+files in the WCOUNT\DATA directory, a log file WCOUNT\LOG\COUNT23.LOG, and
+possibly many more directories in WCOUNT\DIGITS.
+
+
+The source code:
+
+The COUNT.EXE and MKSTRIP.EXE files included were compiled using EMX 0.9c, thus
+they require that you have installed the EMX 0.9c runtime support .DLLs.
+These .DLLs are available on most OS/2 sites in the archive EMXRT.ZIP.
+
+It took significantly more time to write this readme file than it did to
+recompile the code for OS/2.  This can hardly be called a port since there were
+essentially no changes required to compile the original source code for the
+OS/2 environment.
+
+SRC_OS2.ZIP contains the OS/2 specific files required to build the executables
+(3 makefiles, config.h, main.c with 1 line added, mkstrip.c with 1 line added).
+You will need to download the original source archive from
+http://www.fccc.edu/users/muquit/Count.html if you plan to build your own
+version of the code.
+
+I do not use EMX normally (as a matter of fact I downloaded and installed it
+just to do this) so these makefiles are far from optimal.  For the most part I
+simply allowed the compiler to run with the defaults, a few defines that
+appeared to be good defaults for the source code, and defines that seemed to be
+appropriate to fix anything GCC complained about (e.g. using flock and mktime).
+The result is a clean compile with no significant changes to the original
+source code and a stable resulting .exe.
+
+Before anybody asks... the WCOUNT directory is a hardcoded name because I did
+not want to spend the time required to add a configureable directory name to
+the original UNIX source code.  Ignoring the time to setup and figure out
+makefiles for EMX, the entire port took only a few minutes, so I am not about
+to spend hours reading the source code in order to figure out and remove a
+minor inconvenience.  The support for a configureable directory in the 2.2
+release does not exist in this release of 2.3 (and did not work properly in
+2.2 for that matter).
+
+
+Compatibility and support:
+
+I have only tested the code on my own server (IBM Connection Server 4.1 for
+OS/2) and my development machine (straight from command line).  It should work
+with goserve or any other OS/2 web server, but I leave it to the users and
+newsgroups to figure out which combinations work and which do not.  In a
+suitable EMX or RSX environment this executable should run under a DOS web
+server as well if such a beast exists.
+
+If you receive an OS/2 error message similar to
+   SYS1804: The system cannot find the file EMX.
+then you have not followed the first step of the installation instructions by
+successfully installing the EMX 0.9c runtime.  At the very minimum you need:
+ 9-08-96   6:42p     81982           0  emx.dll
+ 9-08-96   6:40p    144963           0  emxlibcm.dll
+
+
+Please review DOCS\COUNT.HTML  DOCS\COUNT2EX.HTML
+http://www.fccc.edu/users/muquit/Count.html and the various appropriate
+newsgroups before contacting me for assistance.  When time allows I will try to
+respond to e-mail questions.
+
+
+Thanks,
+Doug Shields (dshields@direct.ca)
+
+
+Count was written by Muhammad A Muquit (ma_muquit@fccc.edu)
+The OS/2 version was compiled and packaged by Doug Shields (dshields@direct.ca)
